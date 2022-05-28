@@ -48,6 +48,7 @@ resource "aws_s3_object" "sun" {
     source = "/dev/null"
 }
 
+# Create ECR repository for cloud
 resource "aws_ecr_repository" "ecr_docker_cloud" {
   name                 = "cloud"
   image_tag_mutability = "MUTABLE"
@@ -57,6 +58,7 @@ resource "aws_ecr_repository" "ecr_docker_cloud" {
   }
 }
 
+# Create ECR repository for sun
 resource "aws_ecr_repository" "ecr_docker_sun" {
   name                 = "sun"
   image_tag_mutability = "MUTABLE"
