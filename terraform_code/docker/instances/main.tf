@@ -1,10 +1,9 @@
 
-
 #---------------------------------------------------------#
 #                 Terraform Introduction                  #
-#                Docker Container                         #
-#                 Build EC2 Instances                     #
-#                                                         #
+#                 Docker Container Host                   #
+#                Build EC2 Instances + EIP                #
+#             Security group: 22,80,8080-8089             #
 #---------------------------------------------------------#
 
 #  Define the provider
@@ -83,16 +82,22 @@ resource "aws_security_group" "my_sg" {
     to_port          = 22
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
   }
 
   ingress {
-    description      = "SSH from everywhere"
-    from_port        = 8080
-    to_port          = 8085
+    description      = "Web from everywhere"
+    from_port        = 80
+    to_port          = 80
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  ingress {
+    description      = "Web from everywhere"
+    from_port        = 8080
+    to_port          = 8089
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
   }
 
   egress {
