@@ -20,11 +20,11 @@
         // var bucket = "https://ecs-demogo-pictures.s3.ap-northeast-2.amazonaws.com/cat/"
         var bucket = "https://ecr-pictures.s3.amazonaws.com/sun/"
         var ext = ".jpg"
-        for(i=0;i<4;i++){
+        for(i=0;i<7;i++){
             imgArray[i] = (bucket+i+ext);
         }
         function showImage(){
-            var imgNum = Math.round(Math.random()*3);
+            var imgNum = Math.round(Math.random()*6);
             var objImg = document.getElementById("introImg");
             objImg.src = imgArray[imgNum];
         }
