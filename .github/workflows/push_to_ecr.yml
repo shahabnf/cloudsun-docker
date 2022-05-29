@@ -8,7 +8,7 @@ jobs:
   
   build-cloud:
     
-    name: Build cloud Image
+    name: Build Cloud Image
     runs-on: ubuntu-latest
 
    
@@ -42,13 +42,13 @@ jobs:
         echo "Put Pause for 10 seconds and let container start"
         sleep 10
         curl localhost -vvv
-        # Push cats image to ECR
+        # Push Cloud image to AWS ECR
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
   
   build-sun:
     
-    name: Build sun Image
+    name: Build Sun Image
     runs-on: ubuntu-latest
 
    
@@ -82,5 +82,5 @@ jobs:
         echo "Put Pause for 10 seconds and let container start"
         sleep 10
         curl localhost -vvv
-        # Push dogs image to ECR
+        # Push Sun image to AWS ECR
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG

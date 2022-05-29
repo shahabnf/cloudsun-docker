@@ -51,7 +51,7 @@ resource "aws_s3_object" "sun" {
 # Create ECR repository for cloud
 resource "aws_ecr_repository" "ecr_docker_cloud" {
   name                 = "cloud"
-  image_tag_mutability = "MUTABLE"
+  image_tag_mutability = "IMMUTABLE"
 
   image_scanning_configuration {
     scan_on_push = true
@@ -61,7 +61,8 @@ resource "aws_ecr_repository" "ecr_docker_cloud" {
 # Create ECR repository for sun
 resource "aws_ecr_repository" "ecr_docker_sun" {
   name                 = "sun"
-  image_tag_mutability = "MUTABLE"
+  image_tag_mutability = "IMMUTABLE"
+  #image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
     scan_on_push = true
