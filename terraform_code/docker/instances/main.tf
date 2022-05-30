@@ -6,6 +6,17 @@
 #             Security group: 22,80,8080-8089             #
 #---------------------------------------------------------#
 
+# Specify AWS provider
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.27"
+    }
+  }
+  required_version = "~> 1.2.0" # 1.2.0 or above and below 1.3.0
+}
+
 #  Define the provider
 provider "aws" {
   region = "us-east-1"
@@ -77,8 +88,8 @@ resource "aws_key_pair" "my_key" {
 
 # Security Group
 resource "aws_security_group" "my_sg" {
-  name        = "allow_ssh"
-  description = "Allow SSH inbound traffic"
+  name        = "Allow_ssh_web"
+  description = "Allow SSH & Web inbound traffic"
   vpc_id      = data.aws_vpc.default.id
 
   ingress {
