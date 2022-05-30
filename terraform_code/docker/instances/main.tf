@@ -21,6 +21,10 @@ data "aws_ami" "latest_amazon_linux" {
   }
 }
 
+# Data source for IAM Lab Profile
+data "aws_iam_instance_profile" "iam_lab" {
+  name = "LabInstanceProfile"
+}
 
 # Data source for availability zones in us-east-1
 data "aws_availability_zones" "available" {
@@ -51,6 +55,7 @@ resource "aws_instance" "my_amazon" {
   key_name                    = aws_key_pair.my_key.key_name
   vpc_security_group_ids      = [aws_security_group.my_sg.id]
   associate_public_ip_address = false
+  iam_instance_profile        = data.aws_iam_instance_profile.iam_lab.name
 
   lifecycle {
     create_before_destroy = true

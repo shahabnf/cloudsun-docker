@@ -34,7 +34,7 @@ resource "aws_s3_bucket_public_access_block" "pictures_acl" {
 
 # Create Folder cloud
 resource "aws_s3_object" "cloud" {
-    bucket = "${var.env}-pictures"
+    bucket = "${aws_s3_bucket.pictures.id}"
     acl    = "public-read"
     key    = "cloud/"
     source = "/dev/null"
