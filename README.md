@@ -1,3 +1,5 @@
+[![tfsec](https://github.com/shahabnf/cloudsun-docker/actions/workflows/tfsec.yml/badge.svg)](https://github.com/shahabnf/cloudsun-docker/actions/workflows/tfsec.yml)
+
 # cloudsun-docker
 Cloud Sun - Docker - AWS ECR
 
