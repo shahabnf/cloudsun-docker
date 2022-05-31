@@ -6,6 +6,17 @@
 #             Security group: 22,80,8080-8089             #
 #---------------------------------------------------------#
 
+# Specify AWS provider
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.27"
+    }
+  }
+  required_version = "~> 1.2.0" # 1.2.0 or above and below 1.3.0
+}
+
 #  Define the provider
 provider "aws" {
   region = "us-east-1"
@@ -52,8 +63,8 @@ module "globalvars" {
 resource "aws_instance" "my_amazon" {
   ami                         = data.aws_ami.latest_amazon_linux.id
   instance_type               = lookup(var.instance_type, var.env)
-  key_name                    = aws_key_pair.my_key.key_name
-  vpc_security_group_ids      = [aws_security_group.my_sg.id]
+  key_name                    = aws_key_pair.docker_key.key_name
+  vpc_security_group_ids      = [aws_security_group.docker_sg.id]
   associate_public_ip_address = false
   iam_instance_profile        = data.aws_iam_instance_profile.iam_lab.name
 
@@ -68,37 +79,30 @@ resource "aws_instance" "my_amazon" {
   )
 }
 
-
 # Adding SSH key to Amazon EC2
-resource "aws_key_pair" "my_key" {
+resource "aws_key_pair" "docker_key" {
   key_name   = local.name_prefix
   public_key = file("${local.name_prefix}.pub")
 }
 
 # Security Group
-resource "aws_security_group" "my_sg" {
-  name        = "allow_ssh"
-  description = "Allow SSH inbound traffic"
+resource "aws_security_group" "docker_sg" {
+  name        = "Allow_ssh_web"
+  description = "Allow SSH & Web inbound traffic"
   vpc_id      = data.aws_vpc.default.id
 
-  ingress {
-    description      = "SSH from everywhere"
-    from_port        = 22
-    to_port          = 22
-    protocol         = "tcp"
-    cidr_blocks      = [var.cidr_RG]
+  dynamic "ingress" {
+    for_each = var.sg_port_number
+    content {
+      from_port   = ingress.value
+      to_port     = ingress.value
+      protocol    = "tcp"
+      cidr_blocks = [var.cidr_RG]
+    }
   }
 
   ingress {
-    description      = "Web from everywhere"
-    from_port        = 80
-    to_port          = 80
-    protocol         = "tcp"
-    cidr_blocks      = [var.cidr_RG]
-  }
-
-  ingress {
-    description      = "Web from everywhere"
+    description      = "Container Web from everywhere"
     from_port        = 8080
     to_port          = 8089
     protocol         = "tcp"

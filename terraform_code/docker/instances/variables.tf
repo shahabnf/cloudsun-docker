@@ -18,12 +18,15 @@ variable "env" {
   description = "Deployment Environment"
 }
 
+variable "sg_port_number" {
+  default     = ["22", "80"]
+  type        = list(string)
+  description = "Security Group ports for ssh and web access"
+}
+
 # CIDR Range to everywhere
 variable "cidr_RG" {
   type        = string
   default     = "0.0.0.0/0"
   description = "Public IP of my Cloud 9 station to be opened in bastion ingress"
 }
-
-
-
