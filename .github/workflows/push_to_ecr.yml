@@ -4,6 +4,9 @@ on:
   push:
     branches: [ master ]
 
+env:
+  IMAGE_TAG: v1.6
+        
 jobs:
   
   build-cloud:
@@ -11,7 +14,6 @@ jobs:
     name: Build Cloud Image
     runs-on: ubuntu-latest
 
-   
     steps:
 
     - name: Check out code
@@ -30,7 +32,7 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: cloud
-        IMAGE_TAG: v1.3
+        # IMAGE_TAG: v1.0
       run: |
         cd cloud/
         ls -ltra
@@ -40,6 +42,7 @@ jobs:
     - name: Test the Image 
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: cloud
       run: |
         # Unit test, map port 80 to application port (80) in container
         docker run -d -p 80:80 --name nodeapp $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
@@ -62,7 +65,6 @@ jobs:
     name: Build Sun Image
     runs-on: ubuntu-latest
 
-   
     steps:
 
     - name: Check out code
@@ -81,17 +83,29 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: sun
-        IMAGE_TAG: v1.3
+        # IMAGE_TAG: v1.4
       run: |
         cd sun/
         ls -ltra
         # Build Docker image
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+
+    - name: Test the Image 
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: sun
+      run: |
         # Unit test, map port 80 to application port (80) in container
         docker run -d -p 80:80 --name nodeapp $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         docker ps
         echo "Put Pause for 10 seconds and let container start"
         sleep 10
         curl localhost -vvv
+
+    - name: Push Image to Amazon ECR
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: sun
+      run: |
         # Push Sun image to AWS ECR
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
