@@ -19,7 +19,7 @@ resource "aws_s3_bucket" "pictures" {
 # Create ACL for S3
 resource "aws_s3_bucket_acl" "pictures_acl" {
   bucket = aws_s3_bucket.pictures.id
-  acl    = "public"
+  acl    = "public-read"
 }
 
 # public access to S3
