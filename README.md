@@ -30,3 +30,4 @@ docker run -d -p 8080:80 cloud:v1.0
 cd ../sun
 docker build -t sun:v1.0 .
 docker run -d -p 8081:80 sun:v1.0
+
