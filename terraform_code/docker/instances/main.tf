@@ -67,7 +67,11 @@ resource "aws_instance" "my_amazon" {
   vpc_security_group_ids      = [aws_security_group.docker_sg.id]
   associate_public_ip_address = false
   iam_instance_profile        = data.aws_iam_instance_profile.iam_lab.name
-  user_data                   = "${file("docker-service.sh")}"
+  user_data                   = file("bash/install_kind.sh")
+
+  root_block_device {
+    volume_size = 16
+  }
 
   lifecycle {
     create_before_destroy = true
