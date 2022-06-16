@@ -51,7 +51,7 @@ resource "aws_s3_object" "sun" {
 # Create ECR repository for cloud
 resource "aws_ecr_repository" "ecr_repos" {
   for_each             = var.ecr_repo_name
-  name                 = var.ecr_repo_name
+  name                 = "${each.value}"
   image_tag_mutability = "IMMUTABLE"
 
   image_scanning_configuration {

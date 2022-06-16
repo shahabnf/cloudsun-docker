@@ -8,6 +8,6 @@ variable "env" {
 # Define the name of ECR Repository here
 variable "ecr_repo_name" {
   default     = ["cloud", "sun"]
-  type        = list(string)
+  type        = set(string)
   description = "Amazon ECR Repository"
 }
