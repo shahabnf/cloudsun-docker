@@ -19,7 +19,7 @@ variable "env" {
 }
 
 variable "sg_port_number" {
-  default     = ["22", "80", "30000","30001"]
+  default     = ["22", "80", "30000", "30001"]
   type        = list(string)
   description = "Security Group ports for ssh and web access"
 }
