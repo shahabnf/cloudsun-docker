@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-sun
+  namespace: sun
+  labels:
+    app: sun
+    course: clo835
+    Assignment: No.2
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sun
+      name: sun-pod
+  template:
+    metadata:
+      labels:
+        app: sun
+        name: sun-pod
+    spec:
+      containers:
+      - name: sun-container
+        image: 629376172886.dkr.ecr.us-east-1.amazonaws.com/sun:v2.0
