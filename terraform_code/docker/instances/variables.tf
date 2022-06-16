@@ -13,13 +13,13 @@ variable "instance_type" {
 
 # Variable to signal the current environment 
 variable "env" {
-  default     = "dev"
+  default     = "prod"
   type        = string
   description = "Deployment Environment"
 }
 
 variable "sg_port_number" {
-  default     = ["22", "80"]
+  default     = ["22", "80", "30000","30001"]
   type        = list(string)
   description = "Security Group ports for ssh and web access"
 }
