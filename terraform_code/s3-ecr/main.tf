@@ -34,24 +34,24 @@ resource "aws_s3_bucket_public_access_block" "pictures_acl" {
 
 # Create Folder cloud
 resource "aws_s3_object" "cloud" {
-    bucket = "${aws_s3_bucket.pictures.id}"
-    acl    = "public-read"
-    key    = "cloud/"
-    source = "/dev/null"
+  bucket = aws_s3_bucket.pictures.id
+  acl    = "public-read"
+  key    = "cloud/"
+  source = "/dev/null"
 }
 
 # Create Folder sun
 resource "aws_s3_object" "sun" {
-    bucket = "${aws_s3_bucket.pictures.id}"
-    acl    = "public-read"
-    key    = "sun/"
-    source = "/dev/null"
+  bucket = aws_s3_bucket.pictures.id
+  acl    = "public-read"
+  key    = "sun/"
+  source = "/dev/null"
 }
 
 # Create ECR repository for cloud
 resource "aws_ecr_repository" "ecr_repos" {
   for_each             = var.ecr_repo_name
-  name                 = "${each.value}"
+  name                 = each.value
   image_tag_mutability = "IMMUTABLE"
 
   image_scanning_configuration {
