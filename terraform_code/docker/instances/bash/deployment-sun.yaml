@@ -2,10 +2,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deployment-sun
+  name: sun
   namespace: sun
   labels:
     app: sun
+    app.kubernetes.io/name: sun
     course: clo835
     Assignment: No.2
 spec:
@@ -13,13 +14,15 @@ spec:
   selector:
     matchLabels:
       app: sun
-      name: sun-pod
+      name: sun
   template:
     metadata:
       labels:
         app: sun
-        name: sun-pod
+        name: sun
     spec:
       containers:
       - name: sun-container
-        image: 629376172886.dkr.ecr.us-east-1.amazonaws.com/sun:v2.0
+        image: 629376172886.dkr.ecr.us-east-1.amazonaws.com/sun:v2.2
+        ports: 
+        - containerPort: 8081
