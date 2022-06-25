@@ -15,12 +15,12 @@ spec:
   selector:
     matchLabels:
       app: cloud
-      name: cloud
+      #name: cloud
   template:
     metadata:
       labels:
         app: cloud
-        name: cloud
+        #name: cloud
     spec:
       containers:
       - name: cloud-container

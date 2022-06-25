@@ -18,4 +18,4 @@ spec:
     nodePort: 30001
   selector:
     app: sun
-    name: sun
+    # name: sun

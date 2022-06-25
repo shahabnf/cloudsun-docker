@@ -15,12 +15,12 @@ spec:
   selector:
     matchLabels:
       app: sun
-      name: sun
+      #name: sun
   template:
     metadata:
       labels:
         app: sun
-        name: sun
+        #name: sun
     spec:
       containers:
       - name: sun-container
