@@ -1,13 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  app: sun
+  #app: sun
   name: sun
   labels:
     app: sun
-    name: sun
-    #app.kubernetes.io/name: sun
-    #app.kubernetes.io/component: frontend
+    #name: sun
 spec:
   # if your cluster supports it, uncomment the following to automatically create
   # an external load-balanced IP for the frontend service.
@@ -21,5 +19,3 @@ spec:
   selector:
     app: sun
     name: sun
-    #app.kubernetes.io/name: sun
-    #app.kubernetes.io/component: frontend
