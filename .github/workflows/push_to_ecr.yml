@@ -61,6 +61,3 @@ jobs:
       run: |
         # Push Cloud image to AWS ECR
         docker push $ECR_REGISTRY/${{ matrix.ECR_REPOSITORY }}:$IMAGE_TAG
-
-  
-  

@@ -11,7 +11,7 @@ metadata:
     course: clo835
     Assignment: No.2
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: sun
