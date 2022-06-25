@@ -2,20 +2,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  app: cloud
   name: cloud
   namespace: cloud
   labels:
     app: cloud
-    app.kubernetes.io/name: cloud
+    name: cloud
+    #app.kubernetes.io/name: cloud
     course: clo835
     Assignment: No.2
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: cloud
-      # app.kubernetes.io/name: cloud
       name: cloud
+      # app.kubernetes.io/name: cloud
   template:
     metadata:
       labels:

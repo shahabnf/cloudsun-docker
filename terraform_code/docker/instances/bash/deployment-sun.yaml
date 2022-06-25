@@ -2,11 +2,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  app: sun
   name: sun
   namespace: sun
   labels:
     app: sun
-    app.kubernetes.io/name: sun
+    name: sun
+    # app.kubernetes.io/name: sun
     course: clo835
     Assignment: No.2
 spec:

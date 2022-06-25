@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sun
+  labels:
+    app: sun
+    #name: sun
+spec:
+  containers:
+  - image: 629376172886.dkr.ecr.us-east-1.amazonaws.com/sun:v2.2
+    name: sun-pod
+    ports:
+    - containerPort: 80

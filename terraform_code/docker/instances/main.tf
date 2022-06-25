@@ -63,7 +63,7 @@ module "globalvars" {
 resource "aws_instance" "my_amazon" {
   ami                         = data.aws_ami.latest_amazon_linux.id
   instance_type               = lookup(var.instance_type, var.env)
-  key_name                    = aws_key_pair.docker_key.key_name
+  key_name                    = aws_key_pair.K8s_key.key_name
   vpc_security_group_ids      = [aws_security_group.docker_sg.id]
   associate_public_ip_address = false
   iam_instance_profile        = data.aws_iam_instance_profile.iam_lab.name
@@ -85,7 +85,7 @@ resource "aws_instance" "my_amazon" {
 }
 
 # Adding SSH key to Amazon EC2
-resource "aws_key_pair" "docker_key" {
+resource "aws_key_pair" "K8s_key" {
   key_name   = local.name_prefix
   public_key = file("${local.name_prefix}.pub")
 }

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cloud
+  labels:
+    app: cloud
+    #name: cloud
+spec:
+  containers:
+  - image: 629376172886.dkr.ecr.us-east-1.amazonaws.com/cloud:v2.2
+    name: cloud-pod
+    ports:
+    - containerPort: 80
