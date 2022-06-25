@@ -2,28 +2,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  # app: cloud
   name: cloud
   namespace: cloud
   labels:
     app: cloud
-    app.kubernetes.io/name: cloud
+    # name: cloud
     course: clo835
     Assignment: No.2
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: cloud
-      # app.kubernetes.io/name: cloud
-      name: cloud
+      #name: cloud
   template:
     metadata:
       labels:
         app: cloud
-        name: cloud
+        #name: cloud
     spec:
       containers:
       - name: cloud-container
         image: 629376172886.dkr.ecr.us-east-1.amazonaws.com/cloud:v2.2
         ports: 
-        - containerPort: 8080
+        - containerPort: 80

@@ -4,10 +4,8 @@ metadata:
   #app: cloud
   name: cloud
   labels:
-    #app: cloud
-    name: cloud
-    #app.kubernetes.io/name: cloud
-    #app.kubernetes.io/component: frontend
+    app: cloud
+    #name: cloud
 spec:
   # if your cluster supports it, uncomment the following to automatically create
   # an external load-balanced IP for the frontend service.
@@ -19,7 +17,5 @@ spec:
     # By default and for convenience, the Kubernetes control plane will allocate a port from a range (default: 30000-32767)
     nodePort: 30000
   selector:
-    #app: cloud
-    name: cloud
-    #app.kubernetes.io/name: cloud
-    #app.kubernetes.io/component: frontend
+    app: cloud
+    #name: cloud

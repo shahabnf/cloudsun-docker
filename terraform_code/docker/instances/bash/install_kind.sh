@@ -11,3 +11,4 @@
     sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
     rm -f ./kubectl
     kind create cluster --config kind.yaml
+    aws ecr get-login-password --region us-east-1 | docker login -u AWS --password-stdin 629376172886.dkr.ecr.us-east-1.amazonaws.com

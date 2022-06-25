@@ -5,7 +5,7 @@ on:
     branches: [ master ]
 
 env:
-  IMAGE_TAG: v2.2
+  IMAGE_TAG: v2.3
         
 jobs:
   
@@ -61,6 +61,3 @@ jobs:
       run: |
         # Push Cloud image to AWS ECR
         docker push $ECR_REGISTRY/${{ matrix.ECR_REPOSITORY }}:$IMAGE_TAG
-
-  
-  
