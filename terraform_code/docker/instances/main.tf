@@ -1,9 +1,10 @@
 
 #---------------------------------------------------------#
 #                 Terraform Introduction                  #
-#                 Docker Container Host                   #
+#                Kubernetes Cluster(Kind)                 #
 #                Build EC2 Instances + EIP                #
-#             Security group: 22,80,8080-8089             #
+#                     Security group:                     #
+#         Open ports: 22,80,8080-8089, 30000-30001        #
 #---------------------------------------------------------#
 
 # Specify AWS provider
