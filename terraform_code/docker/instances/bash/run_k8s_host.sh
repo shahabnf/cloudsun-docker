@@ -4,8 +4,7 @@ cd cloudsun-docker/terraform_code/s3-ecr
 terraform init
 terraform apply --auto-approve
 cd ../docker/instances
-# Check it work on not
-# ssh-keygen -t rsa -f docker-prod 
+# Automate ssh-keygen "docker-prod" 
 ssh-keygen -q -t rsa -f docker-prod -N ''
 terraform init
 terraform apply --auto-approve
