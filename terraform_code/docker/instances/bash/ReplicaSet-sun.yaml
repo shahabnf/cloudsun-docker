@@ -23,4 +23,4 @@ spec:
       - name: sun-container
         image: 629376172886.dkr.ecr.us-east-1.amazonaws.com/sun:v2.2
         ports:
-        - containerPort: 80
+        - containerPort: 8081
